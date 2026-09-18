@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="SupportAI - AI-powered customer support using Retrieval-Augmented Generation"
+    >
+
+    <title>SupportAI | AI Customer Support</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =========================================================
+         SIDEBAR
+    ========================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                <span>✦</span>
+            </div>
+
+            <div class="brand-text">
+
+                <h1>SupportAI</h1>
+
+                <span>
+                    Intelligent Support
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- AGENT STATUS -->
+
+        <div class="status-card">
+
+            <div class="status-icon">
+
+                <span class="status-dot"></span>
+
+            </div>
+
+            <div class="status-content">
+
+                <strong>
+                    AI Agent Online
+                </strong>
+
+                <small id="statusText">
+                    Checking system...
+                </small>
+
+            </div>
+
+            <div class="status-pulse"></div>
+
+        </div>
+
+
+        <!-- NEW CHAT -->
+
+        <button
+            class="new-chat-btn"
+            id="newChatBtn"
+        >
+
+            <span class="new-chat-icon">
+                ＋
+            </span>
+
+            <span>
+                New Conversation
+            </span>
+
+            <span class="new-chat-shortcut">
+                ⌘ K
+            </span>
+
+        </button>
+
+
+        <!-- =====================================================
+             KNOWLEDGE BASE
+        ====================================================== -->
+
+        <div class="sidebar-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        KNOWLEDGE
+                    </span>
+
+                    <span class="section-title">
+                        Knowledge Base
+                    </span>
+
+                </div>
+
+                <span class="kb-status">
+                    LIVE
+                </span>
+
+            </div>
+
+
+            <!-- KNOWLEDGE CARD -->
+
+            <div class="knowledge-card">
+
+                <div class="knowledge-icon">
+
+                    <span>PDF</span>
+
+                </div>
+
+
+                <div class="knowledge-info">
+
+                    <strong>
+                        Customer Support KB
+                    </strong>
+
+                    <small id="knowledgeStatus">
+                        Ready for questions
+                    </small>
+
+                </div>
+
+
+                <div class="knowledge-check">
+                    ✓
+                </div>
+
+            </div>
+
+
+            <!-- UPLOAD -->
+
+            <label
+                class="upload-btn"
+                for="pdfInput"
+            >
+
+                <span class="upload-icon">
+                    ↑
+                </span>
+
+                <span>
+                    Upload Knowledge PDF
+                </span>
+
+                <span class="upload-arrow">
+                    →
+                </span>
+
+            </label>
+
+
+            <input
+                type="file"
+                id="pdfInput"
+                accept=".pdf,application/pdf"
+                hidden
+            >
+
+
+            <!-- REINDEX -->
+
+            <button
+                class="reindex-btn"
+                id="reindexBtn"
+            >
+
+                <span>
+                    ↻
+                </span>
+
+                Reindex Knowledge Base
+
+            </button>
+
+
+        </div>
+
+
+        <!-- =====================================================
+             SYSTEM INFO
+        ====================================================== -->
+
+        <div class="sidebar-section system-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        SYSTEM
+                    </span>
+
+                    <span class="section-title">
+                        Architecture
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="architecture-list">
+
+
+                <div class="architecture-item">
+
+                    <div class="architecture-icon">
+                        ⚡
+                    </div>
+
+                    <div>
+                        <strong>FastAPI</strong>
+                        <small>Backend API</small>
+                    </div>
+
+                    <span class="architecture-status">
+                        ●
+                    </span>
+
+                </div>
+
+
+                <div class="architecture-item">
+
+                    <div class="architecture-icon">
+                        ◈
+                    </div>
+
+                    <div>
+                        <strong>LangChain</strong>
+                        <small>AI Orchestration</small>
+                    </div>
+
+                    <span class="architecture-status">
+                        ●
+                    </span>
+
+                </div>
+
+
+                <div class="architecture-item">
+
+                    <div class="architecture-icon">
+                        ✦
+                    </div>
+
+                    <div>
+                        <strong>Gemini</strong>
+                        <small>Language Model</small>
+                    </div>
+
+                    <span class="architecture-status">
+                        ●
+                    </span>
+
+                </div>
+
+
+                <div class="architecture-item">
+
+                    <div class="architecture-icon">
+                        ◉
+                    </div>
+
+                    <div>
+                        <strong>ChromaDB</strong>
+                        <small>Vector Search</small>
+                    </div>
+
+                    <span class="architecture-status">
+                        ●
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SIDEBAR FOOTER
+        ====================================================== -->
+
+        <div class="sidebar-footer">
+
+
+            <div class="rag-badge">
+
+                <div class="rag-badge-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <strong>
+                        RAG Enabled
+                    </strong>
+
+                    <p>
+                        Knowledge-grounded responses
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-bottom">
+
+                <span>
+                    v1.0.0
+                </span>
+
+                <span>
+                    •
+                </span>
+
+                <span>
+                    AI Support Platform
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =========================================================
+         MAIN APPLICATION
+    ========================================================== -->
+
+    <main class="main">
+
+
+        <!-- =====================================================
+             TOP BAR
+        ====================================================== -->
+
+        <header class="topbar">
+
+
+            <!-- MOBILE BRAND -->
+
+            <div class="mobile-brand">
+
+                <div class="mobile-brand-icon">
+                    ✦
+                </div>
+
+                <strong>
+                    SupportAI
+                </strong>
+
+            </div>
+
+
+            <!-- CENTER STATUS -->
+
+            <div class="topbar-center">
+
+                <div class="live-indicator">
+
+                    <span></span>
+
+                    AI SUPPORT AGENT
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div class="topbar-right">
+
+
+                <div class="secure">
+
+                    <span class="secure-icon">
+                        ✓
+                    </span>
+
+                    Secure Session
+
+                </div>
+
+
+                <div class="topbar-divider"></div>
+
+
+                <div class="model-badge">
+
+                    <span class="model-dot"></span>
+
+                    Gemini
+
+                </div>
+
+
+                <div class="avatar">
+                    AI
+                </div>
+
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             CHAT CONTAINER
+        ========================================================== -->
+
+        <section
+            class="chat-container"
+            id="chatContainer"
+        >
+
+
+            <!-- =================================================
+                 WELCOME SCREEN
+            ================================================== -->
+
+            <div
+                class="welcome"
+                id="welcomeScreen"
+            >
+
+
+                <!-- GLOW -->
+
+                <div class="welcome-glow"></div>
+
+
+                <!-- ICON -->
+
+                <div class="welcome-icon">
+
+                    <div class="welcome-icon-inner">
+                        ✦
+                    </div>
+
+                </div>
+
+
+                <!-- EYEBROW -->
+
+                <div class="eyebrow">
+
+                    <span></span>
+
+                    AI CUSTOMER SUPPORT
+
+                    <span></span>
+
+                </div>
+
+
+                <!-- TITLE -->
+
+                <h2>
+
+                    Your questions.
+                    <br>
+
+                    <span>
+                        Intelligent answers.
+                    </span>
+
+                </h2>
+
+
+                <!-- DESCRIPTION -->
+
+                <p>
+
+                    Get instant, knowledge-grounded answers
+                    about products, orders, refunds, delivery,
+                    warranty and more.
+
+                </p>
+
+
+                <!-- AI CAPABILITIES -->
+
+                <div class="capability-row">
+
+                    <div class="capability">
+
+                        <span>✦</span>
+
+                        Knowledge Grounded
+
+                    </div>
+
+                    <div class="capability">
+
+                        <span>⚡</span>
+
+                        Instant Responses
+
+                    </div>
+
+                    <div class="capability">
+
+                        <span>◈</span>
+
+                        Source Backed
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUGGESTIONS -->
+
+                <div class="suggestions">
+
+
+                    <button
+                        class="suggestion"
+                        data-question="What is the refund and return policy?"
+                    >
+
+                        <div class="suggestion-icon refund">
+                            ↩
+                        </div>
+
+                        <div class="suggestion-content">
+
+                            <strong>
+                                Refund & Returns
+                            </strong>
+
+                            <small>
+                                Learn about our return policy
+                            </small>
+
+                        </div>
+
+                        <span class="suggestion-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="suggestion"
+                        data-question="How long does standard delivery take?"
+                    >
+
+                        <div class="suggestion-icon delivery">
+                            ◷
+                        </div>
+
+                        <div class="suggestion-content">
+
+                            <strong>
+                                Delivery Information
+                            </strong>
+
+                            <small>
+                                Check delivery timelines
+                            </small>
+
+                        </div>
+
+                        <span class="suggestion-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="suggestion"
+                        data-question="What payment methods are supported?"
+                    >
+
+                        <div class="suggestion-icon payment">
+                            ₹
+                        </div>
+
+                        <div class="suggestion-content">
+
+                            <strong>
+                                Payment Methods
+                            </strong>
+
+                            <small>
+                                Explore available payment options
+                            </small>
+
+                        </div>
+
+                        <span class="suggestion-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="suggestion"
+                        data-question="What does the product warranty cover?"
+                    >
+
+                        <div class="suggestion-icon warranty">
+                            ✓
+                        </div>
+
+                        <div class="suggestion-content">
+
+                            <strong>
+                                Warranty Coverage
+                            </strong>
+
+                            <small>
+                                Understand warranty terms
+                            </small>
+
+                        </div>
+
+                        <span class="suggestion-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 CHAT MESSAGES
+            ================================================== -->
+
+            <div
+                class="messages"
+                id="messages"
+            ></div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             COMPOSER
+        ====================================================== -->
+
+        <div class="composer-wrapper">
+
+
+            <!-- UPLOAD NOTICE -->
+
+            <div
+                class="upload-notice"
+                id="uploadNotice"
+            ></div>
+
+
+            <!-- INPUT -->
+
+            <form
+                class="composer"
+                id="chatForm"
+            >
+
+
+                <div class="composer-leading">
+
+                    <span>
+                        ✦
+                    </span>
+
+                </div>
+
+
+                <textarea
+                    id="questionInput"
+                    placeholder="Ask anything about our products, orders or policies..."
+                    rows="1"
+                    autocomplete="off"
+                ></textarea>
+
+
+                <div class="composer-actions">
+
+
+                    <button
+                        type="button"
+                        class="composer-tool"
+                        title="Knowledge base"
+                    >
+                        ◈
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="send-btn"
+                        id="sendBtn"
+                        aria-label="Send message"
+                    >
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+            <!-- FOOTER -->
+
+            <div class="composer-footer">
+
+                <span>
+
+                    <span class="footer-dot"></span>
+
+                    AI responses are generated from
+                    the connected knowledge base.
+
+                </span>
+
+
+                <span>
+
+                    Powered by
+                    <strong>Gemini</strong>
+                    +
+                    <strong>RAG</strong>
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =============================================================
+     TOAST
+============================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+>
+</div>
+
+
+
+<!-- =============================================================
+     SCRIPT
+============================================================== -->
+
+<script src="/static/script.js"></script>
+
+</body>
